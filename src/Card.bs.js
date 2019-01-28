@@ -6,6 +6,15 @@ var ReasonReact = require("reason-react/src/ReasonReact.js");
 
 var component = ReasonReact.statelessComponent("Card");
 
+var style = {
+  display: "flex",
+  height: "100px",
+  width: "100px",
+  alignItems: "center",
+  flexDirection: "column",
+  justifyContent: "center"
+};
+
 function make(title, _children) {
   return /* record */[
           /* debugName */component[/* debugName */0],
@@ -18,7 +27,9 @@ function make(title, _children) {
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function (param) {
-              return React.createElement("div", undefined, title);
+              return React.createElement("div", {
+                          style: style
+                        }, title);
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],
@@ -28,5 +39,6 @@ function make(title, _children) {
 }
 
 exports.component = component;
+exports.style = style;
 exports.make = make;
 /* component Not a pure module */
