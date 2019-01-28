@@ -1,28 +1,10 @@
-type state = {input: string};
+let component = ReasonReact.statelessComponent("Input");
 
-type action('a) =
-  | HasInput('a)
-  | Add;
-
-let component = ReasonReact.reducerComponent("Input");
-
-let make = _ => {
+let make = (~onChange, ~value, ~add, _children) => {
   ...component,
-  initialState: () => {input: ""},
-  reducer: (action, _) => {
-    switch (action) {
-    | HasInput(value) => ReasonReact.Update({input: value})
-    | Add => ReasonReact.Update({input: ""})
-    };
-  },
-  render: ({state, send}) =>
+  render: _ =>
     <div>
-      <input
-        value={state.input}
-        onChange={event =>
-          send(HasInput(event->ReactEvent.Form.target##value))
-        }
-      />
-      <button> "Add"->ReasonReact.string </button>
+      <input value onChange />
+      <button onClick=add> "Add"->ReasonReact.string </button>
     </div>,
 };
